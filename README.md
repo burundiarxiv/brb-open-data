@@ -1,2 +1,3 @@
-# brb-open-data
-Cleaned data uploaded on https://brb.bi/
+# BRB Open Data
+
+Cleaned data uploaded on https://brb.bi/fr/content/balance-des-paiements
