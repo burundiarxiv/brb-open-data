@@ -29,7 +29,7 @@ def download_x(element): #This function downloads a specified element and conver
             data = requests.get(link) #Get the binary from the page
             open(unquote(link[35:]),'wb').write(data.content) #Keep the file as it is. And save it on the device. 
             converter.save_book_as(file_name=unquote(link[35:]), dest_file_name=unquote(link[35:])+"x") # Using a converter to convert the xls to xlsx
-            print("Successfully Created ",unquote(link[35:]), "x")
+            print("Successfully Created ",unquote(link[35:])+"x")
             return unquote(link[35:])+"x" #Return the name of the file
 
 def remove_sheets(workbook, sheet_to_keep): #Remove unwanted sheets
