@@ -27,10 +27,10 @@ def download_x(element): #This function downloads a specified element and conver
     for link in links: 
         if element in unquote(link):
             data = requests.get(link) #Get the binary from the page
-            open(unquote("xls/"+link[35:]),'wb').write(data.content) #Keep the file as it is. And save it on the device. 
-            converter.save_book_as(file_name="xls/"+unquote(link[35:]), dest_file_name="xls/"+unquote(link[35:])+"x") # Using a converter to convert the xls to xlsx
+            open(unquote("../xls/"+link[35:]),'wb').write(data.content) #Keep the file as it is. And save it on the device. 
+            converter.save_book_as(file_name="../xls/"+unquote(link[35:]), dest_file_name="../xls/"+unquote(link[35:])+"x") # Using a converter to convert the xls to xlsx
             print("Successfully Created ",unquote(link[35:])+"x")
-            return "xls/"+unquote(link[35:])+"x" #Return the name of the file
+            return "../xls/"+unquote(link[35:])+"x" #Return the name of the file
 
 def remove_sheets(workbook, sheet_to_keep): #Remove unwanted sheets
     workbook_copy = workbook
@@ -47,16 +47,16 @@ def remove_n_lines(workbook, start, end): #remove problematic lines
 
 def xlsx_to_csv(workbook_path):
     read_file = pd.read_excel(workbook_path)
-    read_file.to_csv("csv/Trial.csv", index=None, header= True)
+    read_file.to_csv("../csv/Trial.csv", index=None, header= True)
 
 def create_workbook_from_net(online_notebook): #main function, may need changes
     book = openpyxl.load_workbook(download_x(online_notebook))
     book = remove_sheets(book,"Mensuelle")
     book = remove_n_lines(book,0,7)
     book = remove_n_lines(book,99,300)
-    book.save("xls/trial.xlsx")
+    book.save("../xls/trial.xlsx")
     print(book.sheetnames)
 
-    xlsx_to_csv("xls/trial.xlsx")
+    xlsx_to_csv("../xls/trial.xlsx")
 
 create_workbook_from_net("Importations_par_rubrique en valeur")
